@@ -1,18 +1,14 @@
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import ReactDOM, { Provider } from 'react-dom';
 
 import App from '../../App';
-import store from '../../index'
 
-import { render } from '@testing-library/react';
-
+Enzyme.configure({adapter: new Adapter()});
 test("renders without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(
-        <Provider store={store}>
-          <App />
-        </Provider>,
-        document.getElementById('root'),
-      );
+    //const div = document.createElement("div");
+    const wrapper = shallow(<Provider><App /></Provider>);
+
+    expect(wrapper.find('AppBar.classes.appBar').exists()).toBe(true);
 })

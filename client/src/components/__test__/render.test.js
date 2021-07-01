@@ -1,21 +1,17 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { Provider } from 'react-redux';
-const { configureStore } = require('redux-mock-store')
+import { Provider } from 'react-dom'
+import { useSelector } from 'react-redux';
+import useStyles from '../Posts/styles';
 
+import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({adapter: new Adapter()});
 
-import Post from '../Posts/Post/Post'
-
-const middlewares = []
-const mockStore = configureStore(middlewares)
-
-const initialState = {}
-  const store = mockStore(initialState)
-
-  store.dispatch(addTodo())
+import Posts from '../Posts/Posts';
 
 it("renders without crashing 1", () => {
-  const post = shallow(<Provider store={store}><Post /></Provider>);
+  // const posts = useSelector((state) => state.posts);
+  // const classes = useStyles();
+
+  shallow(<Provider><Posts /></ Provider>);
 });
